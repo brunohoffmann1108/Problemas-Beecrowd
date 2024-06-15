@@ -1,3 +1,7 @@
+// Em uma partida do jogo de cartas '23', teremos 2 jogadores (John e Mary) com a mão dada pelo usuário.
+// Além disso, o usuário pode escolher quantas rodadas se passaram após a mão inicial, junto com o valor de cada rodada.
+// Com isso, o programa deve determinar qual a menor carta que deve ser tirada na próxima rodada para Mary ganhar o jogo (se for possível).
+
 #include <stdio.h>
 int cartas[13] = {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4};
 

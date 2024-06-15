@@ -1,3 +1,6 @@
+// Este programa determina quantas cartas podem ser trocadas entre duas pessoas, dado que 
+// só podem trocar a quantidade de cartas que possuem e não querem cartas repitidas.
+
 #include <stdio.h>
 int main(){
     int qtd_alice = 1, qtd_betty = 1;

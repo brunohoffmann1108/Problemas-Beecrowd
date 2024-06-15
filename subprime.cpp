@@ -1,3 +1,6 @@
+// Dado um número de bancos e um número de debentures entre esses bancos, esse programa calcula se todos os bancos podem quitar suas debentures
+// apenas com suas reservas, sem ficarem, ao fim da execução, com saldo negativo
+
 #include <iostream>
 using namespace std;
 

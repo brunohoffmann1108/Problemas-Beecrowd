@@ -1,3 +1,6 @@
+// Este programa determina quantos "diamantes" podem ser formados em um input
+// Um diamante é formado quando um caractere '<' vem antes de um '>'. Não necessariamente logo antes, mas precisa vir antes do '>'.
+
 #include <stdio.h>
 
 int main() {

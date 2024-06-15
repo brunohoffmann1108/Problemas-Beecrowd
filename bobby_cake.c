@@ -1,3 +1,7 @@
+// Dado o número de cerejas em um bolo, este programa faz o seguinte:
+// Diz qual a combinação de duas cerejas, que formando uma reta atravessando as duas, possua o menor valor final ao subtrair a distância
+// de todas as cerejas à direita da linha e das cerejas à esquerda.
+
 #include <stdio.h>
 #include <math.h>
 

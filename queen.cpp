@@ -1,3 +1,6 @@
+// Dado uma rainha num tabuleiro de xadrez, em uma posição inicial, este programa determina
+// quantos movimentos a rainha precisa fazer para chegar em qualquer uma das casas
+
 #include <iostream>
 #include <cmath>
 using namespace std;

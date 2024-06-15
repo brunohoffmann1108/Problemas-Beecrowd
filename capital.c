@@ -1,3 +1,6 @@
+// Este programa diz se a combinação de 4 retângulos com área informada pelo usuário pode
+// formar um retângulo maior, com a soma de todas as áreas 
+
 #include <stdio.h>
 
 int main(){
