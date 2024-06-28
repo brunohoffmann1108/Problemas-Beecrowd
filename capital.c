@@ -1,5 +1,4 @@
-// Este programa diz se a combinação de 4 retângulos com área informada pelo usuário pode
-// formar um retângulo maior, com a soma de todas as áreas 
+// Este código resolve o problema 2428 do Beecrowd
 
 #include <stdio.h>
 

@@ -1,5 +1,4 @@
-// Dado uma rainha num tabuleiro de xadrez, em uma posição inicial, este programa determina
-// quantos movimentos a rainha precisa fazer para chegar em qualquer uma das casas
+// Este código resolve o problema 1087 do Beecrowd
 
 #include <iostream>
 #include <cmath>

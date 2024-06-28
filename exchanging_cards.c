@@ -1,5 +1,4 @@
-// Este programa determina quantas cartas podem ser trocadas entre duas pessoas, dado que 
-// só podem trocar a quantidade de cartas que possuem e não querem cartas repitidas.
+// Este código resolve o problema 1104 do Beecrowd
 
 #include <stdio.h>
 int main(){

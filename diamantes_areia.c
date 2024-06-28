@@ -1,5 +1,4 @@
-// Este programa determina quantos "diamantes" podem ser formados em um input
-// Um diamante é formado quando um caractere '<' vem antes de um '>'. Não necessariamente logo antes, mas precisa vir antes do '>'.
+// Este código resolve o problema 1069 do Beecrowd
 
 #include <stdio.h>
 

@@ -1,6 +1,4 @@
-// Dado um número inicial de vendedores de telemarketing e um número de chamadas, com o tempo de cada uma delas,
-// este programa define quantas chamadas cada vendedor irá realizar.
-// A lista de chamadas é distribuida com base na ordem da lista de atendentes, e o tempo entre chamadas é desconsiderado.
+// Este código resolve o problema 2330 do Beecrowd
 
 #include <stdio.h>
 

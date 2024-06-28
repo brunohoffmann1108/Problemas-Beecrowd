@@ -1,7 +1,4 @@
-// Este programa lê uma sequencia de até 300 caracteres. Seu objetivo é ser um tradutor do sistema dial number, onde números são representados por
-// letras (útil para decorar números de telefone).
-// Imprime números e os caracteres '#' e '*' normalmente. Caso seja uma letra, converte para o respectivo número. O restante é descartado.
-// Encerra se a entrada estiver vazia.
+// Este código resolve o problema 2678 do Beecrowd
 
 #include <iostream>
 #include <cctype>

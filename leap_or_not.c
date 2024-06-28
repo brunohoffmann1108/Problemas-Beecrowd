@@ -1,7 +1,4 @@
-// Este programa fornece as características de um ano específico no intervalo de 2000 até 10^3 dígitos.
-// Ano bissexto: ano divisível por 4 mas não por 100.
-// Ano Huluculu: ano divisível por 15
-// Ano bulukulu: ano divisível por 55, mas tem que ser bissexto
+// Este código resolve o problema 1279 do Beecrowd
 
 #include <stdio.h>
 

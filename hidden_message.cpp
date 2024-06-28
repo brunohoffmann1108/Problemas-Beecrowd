@@ -1,5 +1,4 @@
-// O objetivo deste código é imprimir apenas a primeira letra de cada palavra de uma string.
-// Mais especificamente, ele imprime o primeiro caractere (variavel[0]) se for alpha e os caracteres alpha que vêm logo após um espaço.
+// Este código resolve o problema 1272 do Beecrowd
 
 #include <iostream>
 #include <limits>
