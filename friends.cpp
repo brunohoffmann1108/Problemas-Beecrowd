@@ -1,12 +1,4 @@
-// Este código recebe uma equação de conjuntos e resolve com base na prioridade de: intersecção > adição ou subtração.
-// A equação deve ser no formato {CONJUNTO1}op1{CONJUNTO2}op2{CONJUNTO3}...
-// Podem haver conjuntos vazios {}, e os trechos op1 e op2 podem ser substituídos por:
-// * = intersecção
-// + ou - = adição e subtração.
-// Operações de igual prioridade são resolvidas da esquerda para direita.
-// O output são todas as etapas de resolução separadas por uma quebra de linha.
-// A última linha apresenta a equação ordenada, pois pode ocorrer que os inputs não estejam em ordem alfabética, ex:
-// {FGH}+{ABC} = {FGHABC}
+// Este código resolve o problema 1726 do Beecrowd
 
 #include <iostream>
 #include <string>
