@@ -19,9 +19,9 @@ int main(){
         int j = 3; // número inicial que será testado como primo. Aumenta ao longo do código.
         int guarda_j = j;
 
+        // Especificamente para o caso do número 2.
         if(qtd_pessoas > 1){
             iterador_fixo += 2;
-            // Retira o valor do vetor e diminui seu tamanho em 1.
             for(int k = iterador_fixo; k < qtd_pessoas - 1; k++){
                 pessoas[k] = pessoas[k + 1];
             }
