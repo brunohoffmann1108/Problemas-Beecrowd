@@ -15,7 +15,7 @@ int main(){
             int tamanho_palavra = 0;
 
             // Caso o symbol comece com uma letra.
-            if(isalpha(enunciado[i]) && (enunciado[i - 1] == ' ' || i == 0)){
+            if(isalpha(enunciado[i])){
                 i += 1;
                 tamanho_palavra += 1;
                 while(i < enunciado.size() + 1){
