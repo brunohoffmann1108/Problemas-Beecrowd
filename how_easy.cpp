@@ -11,44 +11,27 @@ int main(){
         int tamanho_total = 0;
         
         unsigned i = 0;
-        while(i < enunciado.size()){
-            int tamanho_palavra = 0;
+        int tamanho_palavra = 0;
+        while(i < enunciado.size() + 1){
 
-            // Caso o symbol comece com uma letra.
             if(isalpha(enunciado[i])){
                 i += 1;
                 tamanho_palavra += 1;
-                while(i < enunciado.size() + 1){
-                    if(isalpha(enunciado[i])){
-                        tamanho_palavra += 1;
-                        i +=1;
-                    }
-                    else if(enunciado[i] == '.' && (enunciado[i + 1] == ' ' || i + 1 == enunciado.size())){
-                        i += 2;
-                        num_palavras += 1;
-                        break;
-                    }
-                    else if(enunciado[i] == ' ' || i == enunciado.size()){
-                        num_palavras += 1;
-                        i += 1;
-                        break;
-                    }
-                    else{
-                        tamanho_palavra = 0;
-                        i += 1;
-                        while(i < enunciado.size()){
-                            if(enunciado[i] != ' ' && enunciado[i - 1] == ' '){
-                                break;
-                            }
-                            i += 1;
-                        }
-                        break;
-                    }
-                }
             }
-
-            // Caso não comece com uma letra.
+            else if(enunciado[i] == '.' && (enunciado[i + 1] == ' ' || i + 1 == enunciado.size())){
+                i += 2;
+                num_palavras += 1;
+                tamanho_total += tamanho_palavra;
+                tamanho_palavra = 0;
+            }
+            else if((enunciado[i] == ' ' || i == enunciado.size()) && tamanho_palavra > 0){
+                i += 1;
+                num_palavras += 1;
+                tamanho_total += tamanho_palavra;
+                tamanho_palavra = 0;
+            }
             else{
+                tamanho_palavra = 0;
                 i += 1;
                 while(i < enunciado.size()){
                     if(enunciado[i] != ' ' && enunciado[i - 1] == ' '){
@@ -56,8 +39,7 @@ int main(){
                     }
                     i += 1;
                 }
-            } 
-            tamanho_total += tamanho_palavra;
+            }
         }
 
         int media;
@@ -68,6 +50,5 @@ int main(){
         else if(media <= 5) cout << 500 << endl;
         else cout << 1000 << endl;
     }
-
     return 0;
 }
