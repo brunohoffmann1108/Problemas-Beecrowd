@@ -7,29 +7,52 @@ int main(){
     cin >> x >> y;
 
     while(x != 0 && y != 0){
-        int larg_tabua;
-        cin >> larg_tabua;
-        // int num_tabuas;
-        // cin >> num_tabuas;
+        int largura_tabua;
+        cin >> largura_tabua;
 
-        int* vetorX = nullptr;
-        // Caso a largura das tábuas feche com a largura da sala.
-        if((x * 100) % larg_tabua == 0){
-            int tabuas_necessarias = (x * 100) / larg_tabua; 
-            vetorX = new int[tabuas_necessarias];
-            for(int i = 0; i < tabuas_necessarias; i++){
-                vetorX[i] = y;
+        int* minimoX = nullptr;
+        if((x * 100) % largura_tabua == 0){
+            minimoX = new int;
+            *minimoX = x * 100 / largura_tabua;
+        }
+
+        // Entrada do número de tábuas disponíveis e alocação de um vetor do mesmo tamanho.
+        int num_tabuas;
+        cin >> num_tabuas;
+        int* tabuas = new int[num_tabuas];
+
+        // Espaços já preenchidos por uma ou mais tábua.
+        int preenchidosX = 0, tabuasX = 0;
+        for(int i = 0; i < num_tabuas; i++){
+            cout << i << endl;
+            cin >> tabuas[i];
+            if(preenchidosX < *minimoX){
+                if(tabuas[i] == y){
+                    preenchidosX += 1;
+                    tabuasX += 1;
+                    tabuas[i] = 0;
+                    continue;
+                }
+                else{
+                    for(int j = 0; j < i; j++){
+                        if(tabuas[i] + tabuas[j] == y){
+                            preenchidosX += 1;
+                            tabuasX += 2;
+                            tabuas[i] = tabuas[j] = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+            else if(tabuasX > *minimoX){
+                if(tabuas[i] == y){
+                    tabuasX -= 1;
+                    continue;
+                }
             }
         }
-        int* vetorY = nullptr;
-        // Caso a largura das tábuas feche com a profundidade da sala.
-        if((y * 100) % larg_tabua == 0){
-            int tabuas_necessarias = (y * 100) / larg_tabua;
-            vetorY = new int[tabuas_necessarias];
-            for(int i = 0; i < tabuas_necessarias; i++){
-                vetorY[i] = x;
-            }
-        }
+        cout << preenchidosX << endl << tabuasX << endl;
+
 
         cin >> x >> y;
     }
