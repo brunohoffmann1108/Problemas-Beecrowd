@@ -1,94 +1,79 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
+int calcula_minimo(int minimo_tabuas, int comprimento, int tabuas[10000], int tamanho_array){
+    int i = 0;
+    int total_tabuas = 0;
+    int preenchidos = 0;
+    while(i < tamanho_array && preenchidos < minimo_tabuas){
+        if(tabuas[i] == comprimento){
+            preenchidos += 1;
+            total_tabuas += 1;
+            tabuas[i] = 0;
+        } 
+        else if(i > 0){
+            for(int j = 0; j < i; j++){
+                if(tabuas[j] + tabuas[i] == comprimento){
+                    total_tabuas += 2;
+                    preenchidos += 1;
+                    tabuas[i] = tabuas[j] = 0;
+                    break;
+                }
+            }
+        }
+        i += 1;
+    }
+    while(i < tamanho_array && total_tabuas > minimo_tabuas){
+        if(tabuas[i] == comprimento){
+            total_tabuas -= 1;
+        }
+        i += 1;
+    }
+    if(preenchidos == minimo_tabuas) return total_tabuas;
+    else return 100001;
+
+}
+
 int main(){
-    int x; // largura da sala.
-    int y; // Profundidade da sala.
-    cin >> x >> y;
+    int n, m;
+    while(cin >> n >> m){
+        if(n == 0 && m == 0) break;
 
-    while(x != 0 && y != 0){
-        int largura_tabua;
-        cin >> largura_tabua;
+        int l, k;
+        cin >> l >> k;
 
-        int* minimoX = nullptr;
-        if((x * 100) % largura_tabua == 0){
-            minimoX = new int;
-            *minimoX = x * 100 / largura_tabua;
-        }
-        int* minimoY = nullptr;
-        if((y * 100) % largura_tabua == 0){
-            minimoY = new int;
-            *minimoY = y * 100 / largura_tabua;
-        }
-
-        // Entrada do número de tábuas disponíveis e alocação de um vetor do mesmo tamanho.
-        int num_tabuas;
-        cin >> num_tabuas;
-        int* vetorX = new int[num_tabuas];
-        int* vetorY = new int[num_tabuas];
-
-        int preenchidosX = 0, tabuasX = 0;
-        int preenchidosY = 0, tabuasY = 0;
-        for(int i = 0; i < num_tabuas; i++){
-            cin >> vetorX[i];
-            vetorY[i] = vetorX[i];
-            if(minimoX != nullptr){
-                if(preenchidosX < *minimoX){
-                    if(vetorX[i] == y){
-                        preenchidosX += 1;
-                        tabuasX += 1;
-                        vetorX[i] = 0;
-                    }
-                    else{
-                        for(int j = 0; j < i; j++){
-                            if(vetorX[i] + vetorX[j] == y){
-                                preenchidosX += 1;
-                                tabuasX += 2;
-                                vetorX[i] = vetorX[j] = 0;
-                                break;
-                            }
-                        }
-                    }
-                }
-                else if(tabuasX > *minimoX){
-                    if(vetorX[i] == y){
-                        tabuasX -= 1;
-                    }
-                }
-            }
-            if(minimoY != nullptr){
-                if(preenchidosY < *minimoY){
-                    if(vetorY[i] == x){
-                        preenchidosY += 1;
-                        tabuasY += 1;
-                        vetorY[i] = 0;
-                    }
-                    else{
-                        for(int j = 0; j < i; j++){
-                            if(vetorY[i] + vetorY[j] == x){
-                                preenchidosY += 1;
-                                tabuasY += 2;
-                                vetorY[i] = vetorY[j] = 0;
-                                break;
-                            }
-                        }
-                    }
-                }
-                else if(tabuasY > *minimoY){
-                    if(vetorY[i] == x){
-                        tabuasY -= 1;
-                    }
-                }
+        int tabuasN[100000];
+        int tabuasM[100000];
+        int itN = 0;
+        int itM = 0;
+        for(int i = 0; i < k; i++){ 
+            int temp;
+            cin >> temp;
+            if(temp <= n){
+                tabuasM[itM] = temp;
+                itM += 1;
+            } 
+            if(temp <= m){
+                tabuasN[itN] = temp;
+                itN += 1;
             }
         }
-        int minimo = 100001;
-        if(minimoY != nullptr && preenchidosY == *minimoY && tabuasY > 0) minimo = tabuasY;
-        if(minimoX != nullptr && preenchidosX == *minimoX && tabuasX < minimo) minimo = tabuasX;
-        if(minimo == 100001) cout << "impossivel" << endl;
-        else cout << minimo << endl;
 
-        cin >> x >> y;
+        int minimoN = 100001;
+        if((n * 100) % l == 0 && n * 100 / l <= k){
+            int minimo_tabuas = n * 100 / l;
+            minimoN = calcula_minimo(minimo_tabuas, m, tabuasN, itN);
+        }
+        
+        int minimoM = 100001;
+        if((m * 100) % l == 0 && m * 100 / l <= k){
+            int minimo_tabuas = m * 100 / l;
+            minimoM = calcula_minimo(minimo_tabuas, n, tabuasM, itM);
+        }
+
+        if(minimoM < minimoN) cout << minimoM << endl;
+        else if(minimoN < minimoM) cout << minimoN << endl;
+        else cout << "impossivel" << endl;
     }
 
     return 0;
