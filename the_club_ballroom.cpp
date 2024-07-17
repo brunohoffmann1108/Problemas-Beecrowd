@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main(){
@@ -15,44 +16,77 @@ int main(){
             minimoX = new int;
             *minimoX = x * 100 / largura_tabua;
         }
+        int* minimoY = nullptr;
+        if((y * 100) % largura_tabua == 0){
+            minimoY = new int;
+            *minimoY = y * 100 / largura_tabua;
+        }
 
         // Entrada do número de tábuas disponíveis e alocação de um vetor do mesmo tamanho.
         int num_tabuas;
         cin >> num_tabuas;
-        int* tabuas = new int[num_tabuas];
+        int* vetorX = new int[num_tabuas];
+        int* vetorY = new int[num_tabuas];
 
-        // Espaços já preenchidos por uma ou mais tábua.
         int preenchidosX = 0, tabuasX = 0;
+        int preenchidosY = 0, tabuasY = 0;
         for(int i = 0; i < num_tabuas; i++){
-            cout << i << endl;
-            cin >> tabuas[i];
-            if(preenchidosX < *minimoX){
-                if(tabuas[i] == y){
-                    preenchidosX += 1;
-                    tabuasX += 1;
-                    tabuas[i] = 0;
-                    continue;
-                }
-                else{
-                    for(int j = 0; j < i; j++){
-                        if(tabuas[i] + tabuas[j] == y){
-                            preenchidosX += 1;
-                            tabuasX += 2;
-                            tabuas[i] = tabuas[j] = 0;
-                            break;
+            cin >> vetorX[i];
+            vetorY[i] = vetorX[i];
+            if(minimoX != nullptr){
+                if(preenchidosX < *minimoX){
+                    if(vetorX[i] == y){
+                        preenchidosX += 1;
+                        tabuasX += 1;
+                        vetorX[i] = 0;
+                    }
+                    else{
+                        for(int j = 0; j < i; j++){
+                            if(vetorX[i] + vetorX[j] == y){
+                                preenchidosX += 1;
+                                tabuasX += 2;
+                                vetorX[i] = vetorX[j] = 0;
+                                break;
+                            }
                         }
                     }
                 }
+                else if(tabuasX > *minimoX){
+                    if(vetorX[i] == y){
+                        tabuasX -= 1;
+                    }
+                }
             }
-            else if(tabuasX > *minimoX){
-                if(tabuas[i] == y){
-                    tabuasX -= 1;
-                    continue;
+            if(minimoY != nullptr){
+                if(preenchidosY < *minimoY){
+                    if(vetorY[i] == x){
+                        preenchidosY += 1;
+                        tabuasY += 1;
+                        vetorY[i] = 0;
+                    }
+                    else{
+                        for(int j = 0; j < i; j++){
+                            if(vetorY[i] + vetorY[j] == x){
+                                preenchidosY += 1;
+                                tabuasY += 2;
+                                vetorY[i] = vetorY[j] = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if(tabuasY > *minimoY){
+                    if(vetorY[i] == x){
+                        tabuasY -= 1;
+                    }
                 }
             }
         }
-        cout << preenchidosX << endl << tabuasX << endl;
-
+        int minimo = 100001;
+        if(minimoY != nullptr && preenchidosY == *minimoY && tabuasY > 0) minimo = tabuasY;
+        if(minimoX != nullptr && preenchidosX == *minimoX && tabuasX < minimo) minimo = tabuasX;
+        if(minimo == 100001) cout << "impossivel" << endl;
+        else cout << minimo << endl;
 
         cin >> x >> y;
     }
