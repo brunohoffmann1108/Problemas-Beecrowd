@@ -1,3 +1,5 @@
+// Este código resolve o problema 1086 do beecrowd.
+
 #include <iostream>
 using namespace std;
 
@@ -23,6 +25,7 @@ int calcula_minimo(int minimo_tabuas, int comprimento, int tabuas[100000], int t
         }
         i += 1;
     }
+    // Caso espaços já tenham sido preenchidos, mas com mais tábaus do que o mínimo.
     while(i < tamanho_array && total_tabuas > minimo_tabuas){
         if(tabuas[i] == comprimento){
             total_tabuas -= 1;
@@ -30,7 +33,7 @@ int calcula_minimo(int minimo_tabuas, int comprimento, int tabuas[100000], int t
         i += 1;
     }
     if(preenchidos == minimo_tabuas) return total_tabuas;
-    else return 100001;
+    else return 100001; // Máximo de tábaus + 1.
 
 }
 
@@ -38,11 +41,12 @@ int main(){
     int n, m;
     while(cin >> n >> m){
         if(n == 0 && m == 0) break;
-
         int l, k;
         cin >> l >> k;
 
         int tabuas[100000] = {0};
+        // Variaveis abaixo servem como um banco de dados que guarda quantas tábuas de cada comprimento estão disponíveis.
+        // Sendo tabuasN[2], por exemplo, a quantidade de tábuas de 3 metros.
         int tabuasN[10000] = {0};
         int tabuasM[10000] = {0};
         for(int i = 0; i < k; i++){ 
@@ -52,6 +56,7 @@ int main(){
         }
 
         int minimoN = 100001;
+        // Calcula se a largura e a quantidade de tábuas batem com o necessário.
         if((n * 100) % l == 0 && n * 100 / l <= k){
             int minimo_tabuas = n * 100 / l;
             minimoN = calcula_minimo(minimo_tabuas, m,  tabuas, k, tabuasN);
@@ -62,11 +67,10 @@ int main(){
             int minimo_tabuas = m * 100 / l;
             minimoM = calcula_minimo(minimo_tabuas, n, tabuas, k, tabuasM);
         }
-
+        // Impressão do mínimo de tábuas.
         if(minimoM <= minimoN && minimoM != 100001) cout << minimoM << endl;
         else if(minimoN < minimoM) cout << minimoN << endl;
         else cout << "impossivel" << endl;
     }
-
     return 0;
 }
