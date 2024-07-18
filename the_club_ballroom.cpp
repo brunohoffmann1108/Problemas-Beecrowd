@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+int guarda_tabuas[10000];
+
 int calcula_minimo(int minimo_tabuas, int comprimento, int tabuas[10000], int tamanho_array){
     int i = 0;
     int total_tabuas = 0;
@@ -11,15 +13,11 @@ int calcula_minimo(int minimo_tabuas, int comprimento, int tabuas[10000], int ta
             total_tabuas += 1;
             tabuas[i] = 0;
         } 
-        else if(i > 0){
-            for(int j = 0; j < i; j++){
-                if(tabuas[j] + tabuas[i] == comprimento){
-                    total_tabuas += 2;
-                    preenchidos += 1;
-                    tabuas[i] = tabuas[j] = 0;
-                    break;
-                }
-            }
+        else if(guarda_tabuas[comprimento - (tabuas[i] + 1)] > 0){
+            preenchidos += 1;
+            total_tabuas += 2;
+            guarda_tabuas[tabuas[i - 1]] -= 1;
+            guarda_tabuas[comprimento - (tabuas[i] + 1)] -= 1;
         }
         i += 1;
     }
@@ -49,6 +47,7 @@ int main(){
         for(int i = 0; i < k; i++){ 
             int temp;
             cin >> temp;
+            guarda_tabuas[temp - 1] = temp;
             if(temp <= n){
                 tabuasM[itM] = temp;
                 itM += 1;
