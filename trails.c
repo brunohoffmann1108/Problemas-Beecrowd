@@ -1,3 +1,5 @@
+// Este código resolve o problema 1062 do Beecrowd
+
 #include <stdio.h>
 #include <stdlib.h>
 
