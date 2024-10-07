@@ -1,3 +1,5 @@
+// Este código resolve o problema 1195 do Beecrowd.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,13 +32,31 @@ void adiciona_node(node *novo, node **local_arvore){
     }
 }
 
-void printa_arvore(node *node_printado){
+void printa_prefixo(node *node_printado){
     if(node_printado == NULL){
         return;
     }
-    printf("%i ", node_printado->valor);
-    printa_arvore(node_printado->esquerdo);
-    printa_arvore(node_printado->direito);
+    printf(" %i", node_printado->valor);
+    printa_prefixo(node_printado->esquerdo);
+    printa_prefixo(node_printado->direito);
+}
+
+void printa_infixo(node *node_printado){
+    if(node_printado == NULL){
+        return;
+    }
+    printa_infixo(node_printado->esquerdo);
+    printf(" %i", node_printado->valor);
+    printa_infixo(node_printado->direito);
+}
+
+void printa_posfixo(node *node_printado){
+    if(node_printado == NULL){
+        return;
+    }
+    printa_posfixo(node_printado->esquerdo);
+    printa_posfixo(node_printado->direito);
+    printf(" %i", node_printado->valor);
 }
 
 
@@ -53,8 +73,15 @@ int main(){
             adiciona_node(cria_node(node), &raiz);
         }
         printf("Case %i:\n", i + 1);
-        printa_arvore(raiz);
+        printf("Pre.:");
+        printa_prefixo(raiz);
         printf("\n");
+        printf("In..:");
+        printa_infixo(raiz);
+        printf("\n");
+        printf("Post:");
+        printa_posfixo(raiz);
+        printf("\n\n");
     }
 
     return 0;
